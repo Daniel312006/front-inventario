@@ -1,23 +1,23 @@
-// component: Marcas
+// component: Tipos
 import React, { useEffect, useState } from "react";
 import HeaderTable from "../ui/HeaderTable";
 import Modal from "../ui/Modal";
 import eliminar from "../../helpers/Helpers";
 import {
-  getMarcas,
-  createMarca,
-  updateMarca,
-  deleteMarca,
-} from "../../services/marcasService";
+  getTipos,
+  createTipo,
+  updateTipo,
+  deleteTipo,
+} from "../../services/tiposService";
 import dayjs from "dayjs";
 import Swal from "sweetalert2";
 
-export default function Marcas() {
-  const [marcas, setMarcas] = useState([]);
+export default function Tipos() {
+  const [tipos, setTipos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState(true);
   const [error, setError] = useState(false);
-  const [marca, setMarca] = useState({
+  const [tipo, setTipo] = useState({
     nombre: "",
     estado: true,
   });
@@ -28,7 +28,7 @@ export default function Marcas() {
   });
 
   function cerrarModal() {
-    setMarca({
+    setTipo({
       _id: 0,
       nombre: "",
       estado: true,
@@ -42,12 +42,12 @@ export default function Marcas() {
     modalInstance.hide();
   }
 
-  const listarMarcas = async () => {
+  const listarTipos = async () => {
     setLoading(true);
     setError(false);
     try {
-      const { data } = await getMarcas(query);
-      setMarcas(data);
+      const { data } = await getTipos(query);
+      setTipos(data);
       setLoading(false);
     } catch (error) {
       setError(true);
@@ -61,7 +61,7 @@ export default function Marcas() {
   };
 
   useEffect(() => {
-    listarMarcas();
+    listarTipos();
   }, [query]);
 
   const handleChangeSwitch = (event) => {
@@ -69,44 +69,44 @@ export default function Marcas() {
   };
 
   const handleChange = (event) => {
-    setMarca({
-      ...marca,
+    setTipo({
+      ...tipo,
       [event.target.name]: event.target.value,
     });
   };
 
-  const nuevaMarca = async (marca) => {
+  const nuevoTipo = async (tipo) => {
     try {
-      if (marca._id) {
-        await updateMarca(marca._id, marca);
+      if (tipo._id) {
+        await updateTipo(tipo._id, tipo);
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Marca actualizada",
+          title: "Tipo de Equipo actualizado",
           showConfirmButton: false,
           timer: 1500,
         });
       } else {
-        await createMarca(marca);
+        await createTipo(tipo);
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Marca creada con éxito",
+          title: "Tipo de Equipo creado con éxito",
           showConfirmButton: false,
           timer: 1500,
         });
-        setMarca({
+        setTipo({
           nombre: "",
           estado: true,
         });
       }
-      listarMarcas();
+      listarTipos();
       cerrarModal();
     } catch (error) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Error al crear la marca!",
+        text: "Error al crear el tipo de equipo!",
       });
     }
   };
@@ -117,7 +117,7 @@ export default function Marcas() {
         <div className="card-header">
           <div className="row">
             <div className="col-6">
-              <h3>Marcas</h3>
+              <h3>Tipos de Equipos</h3>
               <div className="form-check form-switch">
                 <input
                   className="form-check-input"
@@ -136,9 +136,9 @@ export default function Marcas() {
             </div>
             <div className="col-6 text-end">
               <Modal
-                titulo={"Nueva Marca"}
-                metodo={nuevaMarca}
-                elemento={marca}
+                titulo={"Nuevo Tipo de Equipo"}
+                metodo={nuevoTipo}
+                elemento={tipo}
                 change={handleChange}
               />
               <button
@@ -147,7 +147,7 @@ export default function Marcas() {
                 data-bs-toggle="modal"
                 data-bs-target="#modalNewUpdate"
                 onClick={() => {
-                  setMarca({
+                  setTipo({
                     _id: 0,
                     nombre: "",
                     estado: true,
@@ -181,20 +181,20 @@ export default function Marcas() {
             <table className="table table-striped">
               <HeaderTable />
               <tbody>
-                {marcas.map((marca, index) => (
-                  <tr key={marca._id}>
+                {tipos.map((tipo, index) => (
+                  <tr key={tipo._id}>
                     <th scope="row">{index + 1}</th>
-                    <td>{marca.nombre}</td>
-                    <td>{marca.estado ? "Activo" : "Inactivo"}</td>
-                    <td>{dayjs(marca.fechaCreacion).format("DD/MM/YYYY")}</td>
+                    <td>{tipo.nombre}</td>
+                    <td>{tipo.estado ? "Activo" : "Inactivo" }</td>
+                    <td>{dayjs(tipo.fechaCreacion).format("DD/MM/YYYY")}</td>
                     <td>
-                      {dayjs(marca.fechaActualizacion).format("DD/MM/YYYY")}
+                      {dayjs(tipo.fechaActualizacion).format("DD/MM/YYYY")}
                     </td>
                     <td>
                       <Modal
-                        titulo={"Editar Marca"}
-                        metodo={nuevaMarca}
-                        elemento={marca}
+                        titulo={"Editar Tipo de Equio"}
+                        metodo={nuevoTipo}
+                        elemento={tipo}
                         change={handleChange}
                       />
                       <button
@@ -203,7 +203,7 @@ export default function Marcas() {
                         data-bs-toggle="modal"
                         data-bs-target="#modalNewUpdate"
                         onClick={() => {
-                          setMarca(marca);
+                          setTipo(tipo);
                         }}
                       >
                         Editar
@@ -211,9 +211,7 @@ export default function Marcas() {
                       <button
                         type="button"
                         className="btn btn-danger mx-1"
-                        onClick={() =>
-                          eliminar(marca._id, deleteMarca, "/marcas")
-                        }
+                        onClick={() => eliminar(tipo._id, deleteTipo, "/tipos")}
                       >
                         Eliminar
                       </button>
