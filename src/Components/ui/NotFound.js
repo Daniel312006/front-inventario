@@ -1,6 +1,6 @@
 import React from 'react'
 
-const NotFound = () => {
+export default function NotFound() {
     return (        
         <div className="container mt-5">
             <div className="row">
@@ -9,5 +9,3 @@ const NotFound = () => {
         </div>        
     )
 }
-
-export default NotFound
