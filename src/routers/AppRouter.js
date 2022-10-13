@@ -2,7 +2,7 @@ import React from "react"
 import { Route, Routes } from "react-router-dom"
 import Container from 'react-bootstrap/Container';
 import { Navbar, Nav } from 'react-bootstrap';
-import { Home } from "../components/ui/Home"
+import { Home } from "../../components/ui/Home"
 import Estados from "../components/estados/Estados"
 import Marcas from "../components/marcas/Marcas"
 import Tipos from "../components/tipos/Tipos"
