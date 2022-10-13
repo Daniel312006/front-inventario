@@ -1,6 +1,6 @@
 import React from "react"
 import { Route, Routes } from "react-router-dom"
-import NavBar from "../components/ui/NavBar"
+import Barra from "../components/ui/NavBar"
 import Home from "../components/ui/Home"
 import Estados from "../components/estados/Estados"
 import Marcas from "../components/marcas/Marcas"
@@ -12,7 +12,7 @@ import NotFound from "../components/ui/NotFound"
 export default function AppRouter() {
     return (
         <div>
-            <NavBar title={'IE EL ROSARIO'} />
+            <Barra title={'IE EL ROSARIO'} />
             <main className="container">
                 <Routes>
                     <Route path="/" element={<Home />} />
