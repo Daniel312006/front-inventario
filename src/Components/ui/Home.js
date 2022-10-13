@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Home() {
+const Home = () => {
     return (        
         <div className="container mt-5">
             <div className="row">
@@ -9,3 +9,5 @@ export default function Home() {
         </div>        
     )
 }
+
+export { Home }
