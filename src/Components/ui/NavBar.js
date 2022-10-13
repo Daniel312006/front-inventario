@@ -1,7 +1,7 @@
 // Navbar bootstrap component
 import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import { Navbar, Nav } from 'react-bootstrap';
+//import Navbar from 'react-bootstrap/Navbar';
 
 const NavBar = () => {
   return (
