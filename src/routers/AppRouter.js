@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom"
 import Container from 'react-bootstrap/Container';
 import { Navbar, Nav } from 'react-bootstrap';
 
-import Estados from "./../components/estados/Estados"
+import { Estados } from "../components/estados/Estados"
 import Marcas from "../components/marcas/Marcas"
 import Tipos from "../components/tipos/Tipos"
 import Usuarios from "../components/usuarios/Usuarios"
