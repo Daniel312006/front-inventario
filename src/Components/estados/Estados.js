@@ -12,7 +12,7 @@ import {
 import dayjs from "dayjs";
 import Swal from "sweetalert2";
 
-export default function Estados() {
+export function Estados() {
   const [estados, setEstados] = useState([]);
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState(true);
